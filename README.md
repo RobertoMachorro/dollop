@@ -14,5 +14,10 @@ http://www.gnu.org/software/libc/manual/html_node/Example-of-Getopt.html#Example
 
 ## Building
 
-Steps go here.
+* aclocal
+* autoconf
+* automake --add-missing
+* ./configure
+* make
+* sudo make install
 
