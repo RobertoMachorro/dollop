@@ -69,3 +69,8 @@ config.status
 Makefile.in
 Makefile
 configure
+
+# Binary Files
+dollop
+*.gz
+*.xz
