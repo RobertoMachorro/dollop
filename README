@@ -1,52 +1,24 @@
-Dollop
-Creates files with pseudo-random content (dollop).
+This is Dollop, it creates files with pseudo-random content (dollop). 
+It aims to be portable and to conform to the GNU application conventions.
 
-Usage
+See the INSTALL file for detailed information about how to configure
+and install Dollop.
 
-PENDING: Instructions and sample command line code.
+See the README.md file for usage instructions.
 
-License
+-----
 
-Dollop is free software: you can redistribute it and/or modify
+Copyright (C) 2018 Roberto Machorro.
+
+This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+the Free Software Foundation; either version 3, or (at your option)
+any later version.
 
-See COPYING file for full license details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-Building from Git
-
-$ aclocal
-$ autoconf
-$ automake --add-missing
-$ ./configure
-$ make
-$ sudo make install
-
-Building from Tarball
-
-$ ./configure
-$ make
-$ sudo make install
-
-Build Distribution
-
-$ make dist-gzip
-
-Build Cleanup
-
-$ make distclean-am
-
-Dependencies
-
-Dollop builds on any standard Posix environment. It has been tested under Linux and MacOS. GNU automake and autoconf where used to make configure and Makefile files. It contains the argtable3 library in source, including license file.
-
-Argtable is Copyright (C) 1998-2001,2003-2011 Stewart Heitmann.
-Parts are Copyright (C) 1989-1994, 1996-1999, 2001, 2003
-  Free Software Foundation, Inc.
-
-Argtable was written by Stewart Heitmann <sheitmann@users.sourceforge.net>
-
-Argtable is now maintained by Tom G. Huang <tomghuang@gmail.com>
-The project homepage of argtable 3.x is http://www.argtable.org
-The project homepage of argtable 2.x is http://argtable.sourceforge.net/
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
