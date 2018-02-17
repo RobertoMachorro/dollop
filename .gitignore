@@ -51,17 +51,21 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# Autotools Stuff
-Makefile.in
-aclocal.m4
-autom4te.cache/
-compile
-configure
+# Autotools Cache Folders
+.deps
+autom4te.cache
+
+# Autotools Linked Files
 depcomp
 install-sh
 missing
-.deps/
-Makefile
+compile
+INSTALL
+
+# Autotools Build Files
+aclocal.m4
 config.log
 config.status
-
+Makefile.in
+Makefile
+configure
