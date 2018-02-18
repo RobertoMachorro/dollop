@@ -283,9 +283,12 @@ extern   char *suboptarg;               /* getsubopt(3) external variable */
  * Materiel Command, USAF, under agreement number F39502-99-1-0512.
  */
 
+/* Commenting out under license (see above), this is in Git, not CVS
 #ifndef lint
 static const char rcsid[]="$Id: getopt_long.c,v 1.1 2009/10/16 19:50:28 rodney Exp rodney $";
-#endif /* lint */
+#endif
+*/
+
 /*-
  * Copyright (c) 2000 The NetBSD Foundation, Inc.
  * All rights reserved.
