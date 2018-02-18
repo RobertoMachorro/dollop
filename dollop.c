@@ -16,10 +16,11 @@
 	along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdlib.h>
 #include "argtable3.h"
 
-struct arg_lit *help, *version, *verbose, *binary;
-struct arg_int *size;
+struct arg_lit *help, *version, *verbose;
+struct arg_int *length;
 struct arg_file *file;
 struct arg_end *end;
 
@@ -29,8 +30,7 @@ int main(int argc, char *argv[])
 		help = arg_litn(NULL, "help", 0, 1, "display this help and exit"),
 		version = arg_litn(NULL, "version", 0, 1, "display version info and exit"),
 		verbose = arg_litn(NULL, "verbose", 0, 1, "verbose output"),
-		binary = arg_litn("b", "binary", 0, 1, "write as binary (defaults to text)"),
-		size = arg_intn("s", "size", "<n>", 0, 1, "final file size in bytes, default 1k"),
+		length = arg_intn("l", "length", "<n>", 0, 1, "final file length in bytes, default 1k"),
 		file = arg_filen(NULL, NULL, "<file>", 0, 1, "output file, defaults to console"),
 		end = arg_end(20),
 	};
@@ -58,13 +58,36 @@ int main(int argc, char *argv[])
 	}
 	else if (nerrors > 0)
 	{
-		arg_print_errors(stdout, end, progname);
-		printf("Try '%s --help' for more information.\n", progname);
+		arg_print_errors(stderr, end, progname);
+		fprintf(stderr, "Try '%s --help' for more information.\n", progname);
 		exitcode = 1;
 	}
 	else
 	{
-		printf("Work it\n\n");
+		FILE *out = stdout;
+
+		if (file->count > 0) {
+			out = fopen(file->filename[0], "w");
+			if (out == NULL) {
+				fprintf(stderr, "Unable to create output file named %s.\n\n", file->filename[0]);
+				exitcode = 1;
+			}
+		}
+
+		if (exitcode == 0) {
+			time_t t;
+			long i, bytes = (length->count > 0)? *length->ival : 1024;
+
+			srand((unsigned) time(&t));
+			for (i=0; i<bytes; i++) {
+				char c = (rand()%94+32);
+				fputc(c, out);
+			}
+
+			if (file->count > 0) {
+				fclose(out);
+			}
+		}
 	}
 
 	arg_freetable(argtable, sizeof(argtable) / sizeof(argtable[0]));
