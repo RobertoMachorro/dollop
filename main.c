@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 	}
 	else if (version->count > 0)
 	{
-		printf("Dollop v%1.1f\n", 1.0);
+		printf("Dollop v%s\n", VERSION);
 		printf("%s\n", progdesc);
 		printf("Copyright (c) 2018 Roberto Machorro\n");
 		exitcode = 0;
