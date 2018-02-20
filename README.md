@@ -2,6 +2,10 @@
 
 Creates files with pseudo-random content (dollop).
 
+[![CircleCI](https://circleci.com/gh/RobertoMachorro/dollop.svg?&style=shield&circle-token=84396ee427dea0650309f102a42c4a25a2889a07)][circleci]
+
+[circleci]: https://circleci.com/gh/RobertoMachorro/dollop
+
 ## Usage
 
 **PENDING:** Instructions and sample command line code.
