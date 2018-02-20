@@ -5,6 +5,9 @@ jobs:
       - image: debian:stretch
     steps:
       - checkout
+	  - run:
+		  name: Get Dependencies
+		  command: sudo apt-get install -y automake autoconf
       - run:
           name: Autoconf/Automake
           command: aclocal && autoconf && automake --add-missing
