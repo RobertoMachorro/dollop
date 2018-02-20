@@ -8,7 +8,25 @@ Creates files with pseudo-random content (dollop).
 
 ## Usage
 
-**PENDING:** Instructions and sample command line code.
+Generating a dolloped file requires the size and name. Parameters can be given in GNU style or short style.
+
+```
+$ dollop --length=23000 --output=testfile.txt
+$ dollop -l 23000 -o testfile.txt
+```
+
+If no output file is specified, the dollop is thrown to the standard output. This in turn can be piped or redirected.
+
+```
+$ dollop --length=23000 > testfile.txt
+$ dollop --length=23000 | wc -c
+```
+
+Parameter reference is always available with the `--help` option.
+
+```
+$ dollop --help
+```
 
 ## License
 
