@@ -9,6 +9,7 @@ Creates files with pseudo-random content (dollop).
 ## Usage
 
 Generating a dolloped file requires the size and name. Parameters can be given in GNU style or short style.
+Invalid lengths will be treated as 0.
 
 ```
 $ dollop --length=23000 --output=testfile.txt

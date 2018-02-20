@@ -16,11 +16,12 @@
 	along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdlib.h>
 #include "argtable3.h"
 #include "dollout.h"
 
 struct arg_lit *help, *version;
-struct arg_int *length;
+struct arg_str *length;
 struct arg_file *file;
 struct arg_end *end;
 
@@ -29,7 +30,7 @@ int main(int argc, char *argv[])
 	void *argtable[] = {
 		help = arg_litn("h", "help", 0, 1, "display this help and exit"),
 		version = arg_litn("V", "version", 0, 1, "display version info and exit"),
-		length = arg_intn("l", "length", "<n>", 0, 1, "final file length in bytes, default 1k"),
+		length = arg_strn("l", "length", "STRING", 0, 1, "final file length in bytes, default 1k"),
 		file = arg_filen("o", "output", "<file>", 0, 1, "output file, defaults to console"),
 		end = arg_end(20),
 	};
@@ -43,7 +44,7 @@ int main(int argc, char *argv[])
 	{
 		printf("Usage: %s", progname);
 		arg_print_syntax(stdout, argtable, "\n\n");
-		printf("Creates files with pseudo-random content (dollop). Generated content\nis sent to standard output, unless an output file is given.\n\n");
+		printf("Creates files with pseudo-random content (dollop). Generated content\nis sent to standard output, unless an output file is given.\nInvalid lengths will be treated as 0.\n\n");
 		arg_print_glossary(stdout, argtable, "  %-25s %s\n");
 		printf("\nReport bugs to <https://github.com/RobertoMachorro/dollop/issues>.\nDollop home page: <https://github.com/RobertoMachorro/dollop>.\n");
 		exitcode = 0;
@@ -61,7 +62,11 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		long bytes = (length->count > 0)? *length->ival : 1024;
+		long bytes = 1024;
+		if (length->count > 0) {
+			char *eptr;
+			bytes = strtol(length->sval[0], &eptr, 10);
+		}
 
 		dollout_seed_random();
 		if (file->count > 0) {
