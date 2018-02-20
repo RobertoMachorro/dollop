@@ -16,8 +16,8 @@
 	along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
 #include "argtable3.h"
+#include "dollout.h"
 
 struct arg_lit *help, *version, *verbose;
 struct arg_int *length;
@@ -66,6 +66,8 @@ int main(int argc, char *argv[])
 	{
 		FILE *out = stdout;
 
+		dollout_seed_random();
+
 		if (file->count > 0) {
 			out = fopen(file->filename[0], "w");
 			if (out == NULL) {
@@ -75,14 +77,8 @@ int main(int argc, char *argv[])
 		}
 
 		if (exitcode == 0) {
-			time_t t;
-			long i, bytes = (length->count > 0)? *length->ival : 1024;
-
-			srand((unsigned) time(&t));
-			for (i=0; i<bytes; i++) {
-				char c = (rand()%94+32);
-				fputc(c, out);
-			}
+			long bytes = (length->count > 0)? *length->ival : 1024;
+			dollout_random_outfile(out, bytes);
 
 			if (file->count > 0) {
 				fclose(out);
