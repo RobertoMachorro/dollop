@@ -61,25 +61,13 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		FILE *out = stdout;
+		long bytes = (length->count > 0)? *length->ival : 1024;
 
 		dollout_seed_random();
-
 		if (file->count > 0) {
-			out = fopen(file->filename[0], "w");
-			if (out == NULL) {
-				fprintf(stderr, "Unable to create output file named %s.\n\n", file->filename[0]);
-				exitcode = 1;
-			}
-		}
-
-		if (exitcode == 0) {
-			long bytes = (length->count > 0)? *length->ival : 1024;
-			dollout_random_outfile(out, bytes);
-
-			if (file->count > 0) {
-				fclose(out);
-			}
+			exitcode = dollout_random_namedfile(file->filename[0], bytes);
+		} else {
+			exitcode = dollout_random_outfile(stdout, bytes);
 		}
 	}
 

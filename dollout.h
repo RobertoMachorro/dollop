@@ -23,5 +23,6 @@
 
 void dollout_seed_random();
 int dollout_random_outfile(FILE* outfile, long length);
+int dollout_random_namedfile(const char* filename, long length);
 
 #endif

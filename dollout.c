@@ -37,3 +37,18 @@ int dollout_random_outfile(FILE* outfile, long length)
 
 	return 0;
 }
+
+int dollout_random_namedfile(const char* filename, long length)
+{
+	FILE* outfile = fopen(filename, "w");
+	if (outfile == NULL) {
+		fprintf(stderr, "Unable to create output file named %s.\n\n", filename);
+		return 1;
+	}
+
+	int result = dollout_random_outfile(outfile, length);
+
+	fclose(outfile);
+
+	return result;
+}
