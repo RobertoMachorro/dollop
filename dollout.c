@@ -26,19 +26,32 @@ void dollout_seed_random()
 	srand((unsigned)time(&t));
 }
 
-int dollout_random_outfile(FILE* outfile, long length)
+int dollout_random_outfile(FILE* outfile, long length, int bufsize)
 {
-	long i;
+	long i, j;
+	long chunks = length / bufsize;
+	long leftover = length % bufsize;
+	char *buffer = malloc(bufsize*sizeof(char));
 
-	for (i=0; i<length; i++) {
-		char c = (rand()%94+32);
-		fputc(c, outfile);
+	for (i=0; i<chunks; i++) {
+		for (j=0; j<bufsize; j++) {
+			buffer[j] = (rand()%94+32);
+		}
+		fwrite(buffer, sizeof(char), bufsize, outfile);
 	}
+	if (leftover) {
+		for (j=0; j<leftover; j++) {
+			buffer[j] = (rand()%94+32);
+		}
+		fwrite(buffer, sizeof(char), leftover, outfile);
+	}
+
+	free(buffer);
 
 	return 0;
 }
 
-int dollout_random_namedfile(const char* filename, long length)
+int dollout_random_namedfile(const char* filename, long length, int bufsize)
 {
 	FILE* outfile = fopen(filename, "w");
 	if (outfile == NULL) {
@@ -46,7 +59,7 @@ int dollout_random_namedfile(const char* filename, long length)
 		return 1;
 	}
 
-	int result = dollout_random_outfile(outfile, length);
+	int result = dollout_random_outfile(outfile, length, bufsize);
 
 	fclose(outfile);
 

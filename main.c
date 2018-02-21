@@ -22,6 +22,7 @@
 
 struct arg_lit *help, *version;
 struct arg_str *length;
+struct arg_int *bufsize;
 struct arg_file *file;
 struct arg_end *end;
 
@@ -31,6 +32,7 @@ int main(int argc, char *argv[])
 		help = arg_litn("h", "help", 0, 1, "display this help and exit"),
 		version = arg_litn("V", "version", 0, 1, "display version info and exit"),
 		length = arg_strn("l", "length", "STRING", 0, 1, "final file length in bytes, default 1k"),
+		bufsize = arg_intn("b", "buffer-size", "<n>", 0, 1, "write buffer size in bytes, default 4k"),
 		file = arg_filen("o", "output", "<file>", 0, 1, "output file, defaults to console"),
 		end = arg_end(20),
 	};
@@ -63,16 +65,21 @@ int main(int argc, char *argv[])
 	else
 	{
 		long bytes = 1024;
+		int buffersize = 4096;
+
 		if (length->count > 0) {
 			char *eptr;
 			bytes = strtol(length->sval[0], &eptr, 10);
 		}
+		if (bufsize->count > 0) {
+			buffersize = bufsize->ival[0];
+		}
 
 		dollout_seed_random();
 		if (file->count > 0) {
-			exitcode = dollout_random_namedfile(file->filename[0], bytes);
+			exitcode = dollout_random_namedfile(file->filename[0], bytes, buffersize);
 		} else {
-			exitcode = dollout_random_outfile(stdout, bytes);
+			exitcode = dollout_random_outfile(stdout, bytes, buffersize);
 		}
 	}
 
