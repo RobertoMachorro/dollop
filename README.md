@@ -6,6 +6,14 @@ Creates files with pseudo-random content (dollop).
 
 [circleci]: https://circleci.com/gh/RobertoMachorro/dollop
 
+## Download
+
+Please be aware that Git sources are based of the master branch and require GNU automake.
+
+* [Download Git Source](https://github.com/RobertoMachorro/dollop/archive/master.zip)
+
+* [Download v1.0](https://github.com/RobertoMachorro/dollop/raw/archive/dollop-1.0.tar.gz)
+
 ## Usage
 
 Generating a dolloped file requires the size and name. Parameters can be given in GNU style or short style.
