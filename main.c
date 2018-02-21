@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 		arg_print_syntax(stdout, argtable, "\n\n");
 		printf("Creates files with pseudo-random content (dollop). Generated content\nis sent to standard output, unless an output file is given.\nInvalid lengths will be treated as 0.\n\n");
 		arg_print_glossary(stdout, argtable, "  %-25s %s\n");
-		printf("\nReport bugs to <https://github.com/RobertoMachorro/dollop/issues>.\nDollop home page: <https://github.com/RobertoMachorro/dollop>.\n");
+		printf("\nReport bugs to <https://github.com/RobertoMachorro/dollop/issues>.\nDollop home page: <https://robertomachorro.github.io/dollop/>.\n");
 		exitcode = 0;
 	}
 	else if (version->count > 0)
