@@ -10,9 +10,9 @@ Creates files with pseudo-random content (dollop).
 
 Please be aware that Git sources are based of the master branch and require GNU automake.
 
-* [Download Git Source](https://github.com/RobertoMachorro/dollop/archive/master.zip)
+* [Download Git Source](https://github.com/RobertoMachorro/dollop/archive/v1.0.tar.gz)
 
-* [Download v1.0](https://github.com/RobertoMachorro/dollop/raw/archive/dollop-1.0.tar.gz)
+* [Download v1.0](https://github.com/RobertoMachorro/dollop/releases/download/v1.0/dollop-1.0.tar.gz)
 
 ## Usage
 
