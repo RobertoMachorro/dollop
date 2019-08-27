@@ -1,5 +1,4 @@
 [![Travis CI Build Status](https://api.travis-ci.org/RobertoMachorro/dollop.svg?branch=master)](https://travis-ci.org/RobertoMachorro/dollop)
-![GitHub](https://img.shields.io/github/license/RobertoMachorro/dollop)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/RobertoMachorro/dollop)
 
 ## Download
