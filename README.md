@@ -1,5 +1,4 @@
 [![Travis CI Build Status](https://api.travis-ci.org/RobertoMachorro/dollop.svg?branch=master)](https://travis-ci.org/RobertoMachorro/dollop)
-[![codebeat badge](https://codebeat.co/badges/208843e4-4d01-4cb5-8543-d04103288e2d)](https://codebeat.co/projects/github-com-robertomachorro-dollop-master)
 ![GitHub](https://img.shields.io/github/license/RobertoMachorro/dollop)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/RobertoMachorro/dollop)
 
