@@ -20,7 +20,8 @@ jobs:
         automake --add-missing
         ./configure
     - name: Compile
+      run: make
+    - name: Check
       run: |
-        make
         make check
         make distcheck
