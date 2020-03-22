@@ -22,5 +22,5 @@ jobs:
     - name: Compile
       run: |
         make
-#      run: make check
-#      run: make distcheck
+        make check
+        make distcheck
