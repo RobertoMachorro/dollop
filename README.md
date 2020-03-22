@@ -1,6 +1,5 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/RobertoMachorro/dollop)
 ![build](https://github.com/RobertoMachorro/dollop/workflows/build/badge.svg)
-[![Travis CI Build Status](https://api.travis-ci.org/RobertoMachorro/dollop.svg?branch=master)](https://travis-ci.org/RobertoMachorro/dollop)
 
 ## Download
 
@@ -35,7 +34,7 @@ $ dollop --help
 
 ## License
 
-Copyright (C) 2018 Roberto Machorro.
+Copyright (C) 2018-2020 Roberto Machorro.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
