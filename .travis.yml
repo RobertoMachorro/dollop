@@ -1,8 +1,0 @@
-language: c
-
-before_script:
-  - aclocal
-  - autoconf
-  - automake --add-missing
-
-script: ./configure && make
