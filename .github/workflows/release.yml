@@ -42,10 +42,27 @@ jobs:
         GOARCH=${{ matrix.arch }}
         BINNAME=dollop-${{ matrix.os }}-${{ matrix.arch }}
         env GOOS=$GOOS GOARCH=$GOARCH go build -v -o "$BINNAME" .
-    - name: Upload release asset
+    - name: Compute checksum
+      run: |
+        BINNAME=dollop-${{ matrix.os }}-${{ matrix.arch }}
+        if command -v sha256sum >/dev/null 2>&1; then
+          sha256sum "$BINNAME" > "$BINNAME".sha256
+        else
+          shasum -a 256 "$BINNAME" > "$BINNAME".sha256
+        fi
+
+    - name: Upload binary
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ needs.create_release.outputs.upload_url }}
         asset_path: ./dollop-${{ matrix.os }}-${{ matrix.arch }}
         asset_name: dollop-${{ matrix.os }}-${{ matrix.arch }}
         asset_content_type: application/octet-stream
+
+    - name: Upload checksum
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: ./dollop-${{ matrix.os }}-${{ matrix.arch }}.sha256
+        asset_name: dollop-${{ matrix.os }}-${{ matrix.arch }}.sha256
+        asset_content_type: text/plain
