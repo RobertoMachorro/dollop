@@ -21,3 +21,30 @@ jobs:
       run: go build -v -o dollop .
     - name: Smoke test
       run: ./dollop --help
+
+  artifacts:
+    # only produce artifacts on pushes to master or manual runs
+    if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        arch: [amd64, arm64]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+    - name: Build artifact
+      run: |
+        if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then GOOS=linux; else GOOS=darwin; fi
+        GOARCH=${{ matrix.arch }}
+        BINNAME=dollop-${{ matrix.os }}-${{ matrix.arch }}
+        env GOOS=$GOOS GOARCH=$GOARCH go build -v -o "$BINNAME" .
+    - name: Upload binary
+      uses: actions/upload-artifact@v3
+      with:
+        name: dollop-${{ matrix.os }}-${{ matrix.arch }}
+        path: dollop-${{ matrix.os }}-${{ matrix.arch }}
