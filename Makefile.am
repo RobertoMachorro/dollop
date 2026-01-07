@@ -1,2 +1,6 @@
-bin_PROGRAMS = dollop
-dollop_SOURCES = main.c argtable3.c dollout.c argtable3.h dollout.h
+bin_PROGRAMS =
+
+# No C sources anymore; build Go binary as part of `make` via an all-local hook.
+all-local:
+	go build -o dollop ./cmd/dollop
+

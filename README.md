@@ -49,6 +49,20 @@ $ make
 $ sudo make install
 ```
 
+## Building with Go (alternative)
+
+This repository now includes a Go re-implementation of the `dollop` CLI.
+
+Build with a Go toolchain (Go 1.18+ recommended):
+
+```sh
+ $ go build -o dollop ./cmd/dollop
+ $ ./dollop --help
+```
+
+The Go binary (`./cmd/dollop`) is a drop-in CLI replacement for most use-cases; flags are the same (`-l/--length`, `-b/--buffer-size`, `-o/--output`, `-h/--help`, `-V/--version`).
+
+
 ## Building from Tarball
 
 ```
