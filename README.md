@@ -3,7 +3,8 @@
 
 ## Download
 
-Please be aware that Git sources are based of the master branch and require GNU automake.
+Please be aware that earlier versions used GNU Autotools; this repository
+now provides a Go implementation of the CLI (see `./cmd/dollop`).
 
 * [Download Git Source](https://github.com/RobertoMachorro/dollop/archive/v1.0.tar.gz)
 
@@ -38,65 +39,26 @@ This software is licensed under [GNU GPLv3 or later](https://www.gnu.org/license
 
 ![GNU GPLv3 Logo](https://www.gnu.org/graphics/gplv3-127x51.png)
 
-## Building from Git
+## Building (Go)
 
-```
-$ aclocal
-$ autoconf
-$ automake --add-missing
-$ ./configure
-$ make
-$ sudo make install
-```
-
-## Building with Go (alternative)
-
-This repository now includes a Go re-implementation of the `dollop` CLI.
-
-Build with a Go toolchain (Go 1.18+ recommended):
+The project is implemented in Go. Build with a Go toolchain (Go 1.18+ recommended):
 
 ```sh
- $ go build -o dollop ./cmd/dollop
- $ ./dollop --help
+go build -o dollop ./cmd/dollop
+./dollop --help
 ```
 
-The Go binary (`./cmd/dollop`) is a drop-in CLI replacement for most use-cases; flags are the same (`-l/--length`, `-b/--buffer-size`, `-o/--output`, `-h/--help`, `-V/--version`).
+Or use the included `Makefile`:
 
-
-## Building from Tarball
-
-```
-$ ./configure
-$ make
-$ sudo make install
+```sh
+make build
+./dollop --help
 ```
 
-## Build Distribution
-
-```
-$ make dist-gzip
-```
-
-## Build Cleanup
-
-```
-$ make distclean-am
-```
 
 ## Dependencies
 
-Dollop builds on any standard Posix environment. It has been tested under Linux and MacOS.
-`GNU automake and autoconf` where used to make configure and Makefile files.
-It contains the argtable3 library in source, including license file.
-
-```
-Argtable is Copyright (C) 1998-2001,2003-2011 Stewart Heitmann.
-Parts are Copyright (C) 1989-1994, 1996-1999, 2001, 2003
-  Free Software Foundation, Inc.
-
-Argtable was written by Stewart Heitmann <sheitmann@users.sourceforge.net>
-
-Argtable is now maintained by Tom G. Huang <tomghuang@gmail.com>
-The project homepage of argtable 3.x is http://www.argtable.org
-The project homepage of argtable 2.x is http://argtable.sourceforge.net/
-```
+Dollop is implemented in Go and requires a Go toolchain to build. It has
+been tested on Linux and macOS. The legacy Argtable3 C sources were removed
+when the CLI was migrated to Go; original sources remain in repository
+history if you need them.
