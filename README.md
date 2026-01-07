@@ -6,7 +6,7 @@
 Please be aware that earlier versions used GNU Autotools; this repository
 now provides a Go implementation of the CLI (see `main.go`).
 
-* [Download Git Source](https://github.com/RobertoMachorro/dollop/archive/v2.0.tar.gz)
+* [Download Release Source](https://github.com/RobertoMachorro/dollop/releases)
 
 ## Usage
 
