@@ -44,7 +44,7 @@ jobs:
         BINNAME=dollop-${{ matrix.os }}-${{ matrix.arch }}
         env GOOS=$GOOS GOARCH=$GOARCH go build -v -o "$BINNAME" .
     - name: Upload binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dollop-${{ matrix.os }}-${{ matrix.arch }}
         path: dollop-${{ matrix.os }}-${{ matrix.arch }}
