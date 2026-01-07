@@ -4,7 +4,7 @@
 ## Download
 
 Please be aware that earlier versions used GNU Autotools; this repository
-now provides a Go implementation of the CLI (see `./cmd/dollop`).
+now provides a Go implementation of the CLI (see `main.go`).
 
 * [Download Git Source](https://github.com/RobertoMachorro/dollop/archive/v1.0.tar.gz)
 
@@ -44,7 +44,7 @@ This software is licensed under [GNU GPLv3 or later](https://www.gnu.org/license
 The project is implemented in Go. Build with a Go toolchain (Go 1.18+ recommended):
 
 ```sh
-go build -o dollop ./cmd/dollop
+go build -o dollop .
 ./dollop --help
 ```
 

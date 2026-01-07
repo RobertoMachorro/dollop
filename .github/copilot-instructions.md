@@ -4,23 +4,23 @@
 Purpose: help an automated coding agent be immediately productive in the current Go-based `dollop` CLI.
 
 - **Project type:** Go command-line utility. The code was migrated from a C/autotools implementation to Go; legacy C files were removed.
-- **Build:** use the Go toolchain. Primary entry: `./cmd/dollop` (module root `go.mod`). A simple `Makefile` is included for convenience.
-  - Typical build: `go build -o dollop ./cmd/dollop` or `make build`.
+- **Build:** use the Go toolchain. Primary entry: `main.go` at repository root (module root `go.mod`). A simple `Makefile` is included for convenience.
+  - Typical build: `go build -o dollop .` or `make build`.
 
-- **Entry point:** `cmd/dollop/main.go` — CLI parsing is implemented with the standard `flag` package. See [cmd/dollop/main.go](cmd/dollop/main.go).
+- **Entry point:** `main.go` — CLI parsing is implemented with the standard `flag` package. See [main.go](main.go).
 - **Core logic:** the CLI and output generator are implemented in Go (random content generation uses `math/rand`). No separate helper C library remains.
 
-- **Binary target:** `dollop` (built from `./cmd/dollop`). See the `Makefile` at repository root for targets.
+- **Binary target:** `dollop` (built from `.`). See the `Makefile` at repository root for targets.
 
 - **Conventions and idioms to follow (observable in code):**
   - Use the standard library (`flag`, `io`, `os`, `math/rand`) for CLI and I/O.
   - Preserve existing flag names and short forms (`-l/--length`, `-b/--buffer-size`, `-o/--output`, `-h/--help`, `-V/--version`) for backward compatibility.
   - Error handling: print to `stderr` and exit with non-zero code using `os.Exit(n)`.
-  - Keep changes small and focused: this is a tiny utility; prefer adding helpers in `cmd/dollop` or a new package rather than large refactors.
+  - Keep changes small and focused: this is a tiny utility; prefer adding helpers in `main.go` or a new package rather than large refactors.
 
 - **Build/test/debug workflow:**
-  - Build locally: `go build -o dollop ./cmd/dollop` or `make build`.
-  - Install: `go install ./cmd/dollop` or `make install` (Makefile uses `$(GOBIN)` if set).
+  - Build locally: `go build -o dollop .` or `make build`.
+  - Install: `go install .` or `make install` (Makefile uses `$(GOBIN)` if set).
   - Debugging: build with `-gcflags "all=-N -l"` or use Delve (`dlv`) for step-through debugging.
   - No unit tests currently included; add `_test.go` files and use `go test ./...` if adding tests.
 
@@ -38,7 +38,7 @@ Purpose: help an automated coding agent be immediately productive in the current
   - Run `go vet` and `golangci-lint` (if enabled in CI) before opening PRs.
 
 - **Files to inspect first for any change:**
-  - [cmd/dollop/main.go](cmd/dollop/main.go) — CLI entry and generator
+  - [main.go](main.go) — CLI entry and generator
   - [go.mod](go.mod) — module definition
   - [Makefile](Makefile) — convenience build targets
   - [README.md](README.md) — user-facing build and usage notes
