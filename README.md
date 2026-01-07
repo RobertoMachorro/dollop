@@ -8,8 +8,6 @@ now provides a Go implementation of the CLI (see `main.go`).
 
 * [Download Git Source](https://github.com/RobertoMachorro/dollop/archive/v2.0.tar.gz)
 
-* [Download v2.0](https://github.com/RobertoMachorro/dollop/releases/download/v2.0/dollop-2.0.tar.gz)
-
 ## Usage
 
 Generating a dolloped file requires the size and name. Parameters can be given in GNU style or short style.
@@ -39,13 +37,14 @@ This software is licensed under [GNU GPLv3 or later](https://www.gnu.org/license
 
 ![GNU GPLv3 Logo](https://www.gnu.org/graphics/gplv3-127x51.png)
 
-## Building (Go)
+## Building, Installing and Running
 
 The project is implemented in Go. Build with a Go toolchain (Go 1.18+ recommended):
 
 ```sh
-go build -o dollop .
-./dollop --help
+go build -o dollop
+go install
+dollop --help
 ```
 
 Or use the included `Makefile`:
@@ -54,7 +53,6 @@ Or use the included `Makefile`:
 make build
 ./dollop --help
 ```
-
 
 ## Dependencies
 
