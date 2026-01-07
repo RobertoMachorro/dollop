@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-const version = "1.0"
+const version = "2.0"
 
 func usage() {
 	fmt.Fprintf(os.Stdout, "Usage: dollop [options]\n")
