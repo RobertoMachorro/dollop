@@ -44,7 +44,7 @@ func main() {
 		os.Exit(0)
 	}
 	if showVersion {
-		fmt.Printf("Dollop %s\nCopyright (C) 2018 Roberto Machorro.\n", version)
+		fmt.Printf("Dollop %s\nCopyright (C) 2018-2026 Roberto Machorro.\n", version)
 		os.Exit(0)
 	}
 
