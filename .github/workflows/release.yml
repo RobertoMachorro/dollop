@@ -6,6 +6,48 @@ on:
   workflow_dispatch:
 
 jobs:
+  build_and_publish:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        arch: [amd64, arm64]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+    - name: Build binary
+      run: |
+        if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then GOOS=linux; else GOOS=darwin; fi
+        GOARCH=${{ matrix.arch }}
+        BINNAME=dollop-${{ matrix.os }}-${{ matrix.arch }}
+        env GOOS=$GOOS GOARCH=$GOARCH go build -v -o "$BINNAME" .
+    - name: Compute checksum
+      run: |
+        BINNAME=dollop-${{ matrix.os }}-${{ matrix.arch }}
+        if command -v sha256sum >/dev/null 2>&1; then
+          sha256sum "$BINNAME" > "$BINNAME".sha256
+        else
+          shasum -a 256 "$BINNAME" > "$BINNAME".sha256
+        fi
+    - name: Publish release assets
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          ./dollop-${{ matrix.os }}-${{ matrix.arch }}
+          ./dollop-${{ matrix.os }}-${{ matrix.arch }}.sha256
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
   create_release:
     runs-on: ubuntu-latest
     outputs:
