@@ -10,8 +10,8 @@ all: build
 build:
 	go build -o $(BINARY) $(PKG)
 
-install: build
-	install -m 0755 $(BINARY) $(GOBIN)/$(BINARY)
+install:
+	go install .
 
 clean:
 	rm -f $(BINARY)

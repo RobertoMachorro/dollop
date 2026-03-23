@@ -7,7 +7,6 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
-	"time"
 )
 
 const version = "2.0.1"
@@ -57,8 +56,6 @@ func main() {
 		}
 		length = v
 	}
-
-	rand.Seed(time.Now().UnixNano())
 
 	var out io.Writer
 	var f *os.File

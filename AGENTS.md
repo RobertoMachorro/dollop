@@ -17,8 +17,7 @@
 ## Project Structure
 - Root docs live in `README.md` and `AGENTS.md`. `CLAUDE.md` refers to `AGENTS.md`.
 - Source code is expected to be Go.
-- Tests should live next to the code they cover using `_test.go` filenames (e.g., `main_test.go`).
-- No unit tests currently exist — add `_test.go` files and use `go test ./...` when adding tests.
+- Tests live next to the code they cover using `_test.go` filenames (e.g., `main_test.go`).
 
 ## Key Files
 - `main.go` — CLI entry point and random content generator (`flag`, `math/rand`, `io`, `os`)
@@ -29,11 +28,8 @@
 
 ## Build & Run
 - Build: `go build -o dollop .` or `make build`
-- Install: `go install .` (preferred over `make install`; see Makefile note below)
+- Install: `go install .` or `make install`
 - Debug build: `go build -gcflags "all=-N -l" -o dollop .`; step-through with Delve (`dlv`)
-
-> **Makefile note:** the `install` target uses `$(GOBIN)/$(BINARY)` — if `GOBIN` is unset this
-> silently installs to `/dollop`. Prefer `go install .` which handles `GOBIN`/`GOPATH` correctly.
 
 ## Coding Style
 - Use tabs for all code formatting and indentation.

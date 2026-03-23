@@ -39,11 +39,11 @@ This software is licensed under [GNU GPLv3 or later](https://www.gnu.org/license
 
 ## Building, Installing and Running
 
-The project is implemented in Go. Build with a Go toolchain (Go 1.18+ recommended):
+The project is implemented in Go. Build with a Go toolchain (Go 1.20+):
 
 ```sh
-go build -o dollop
-go install
+go build -o dollop .
+go install .
 dollop --help
 ```
 
@@ -51,7 +51,14 @@ Or use the included `Makefile`:
 
 ```sh
 make build
+make install
 ./dollop --help
+```
+
+## Testing
+
+```sh
+go test ./...
 ```
 
 ## Dependencies
