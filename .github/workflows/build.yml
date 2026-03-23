@@ -1,0 +1,65 @@
+name: build
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build:
+    name: ${{ matrix.os }}-${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: linux
+            arch: amd64
+            runner: ubuntu-latest
+            binary: dollop
+          - os: linux
+            arch: arm64
+            runner: ubuntu-latest
+            binary: dollop
+          - os: darwin
+            arch: amd64
+            runner: macos-latest
+            binary: dollop
+          - os: darwin
+            arch: arm64
+            runner: macos-latest
+            binary: dollop
+          - os: windows
+            arch: amd64
+            runner: windows-latest
+            binary: dollop.exe
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Build
+        env:
+          GOOS: ${{ matrix.os }}
+          GOARCH: ${{ matrix.arch }}
+          CGO_ENABLED: "0"
+        run: go build -o ${{ matrix.binary }} .
+
+      - name: Test
+        if: matrix.os == 'linux' && matrix.arch == 'amd64'
+        run: go test -race ./...
+
+      - name: Vet
+        if: matrix.os == 'linux' && matrix.arch == 'amd64'
+        run: go vet ./...
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dollop-${{ matrix.os }}-${{ matrix.arch }}
+          path: ${{ matrix.binary }}
+          if-no-files-found: error

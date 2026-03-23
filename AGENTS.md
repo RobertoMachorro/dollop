@@ -24,7 +24,7 @@
 - `go.mod` — module definition
 - `Makefile` — convenience build targets
 - `README.md` — user-facing build and usage notes
-- `.github/workflows/build.yml` — CI build
+- `.github/workflows/build.yml` — CI build (multi-platform: linux/darwin/windows × amd64/arm64)
 
 ## Build & Run
 - Build: `go build -o dollop .` or `make build`
@@ -52,8 +52,12 @@
 - Run `go test ./...` before opening a PR.
 
 ## CI & Release
-- GitHub Actions workflows: `build.yml` (build).
-- If changing the build, update workflow files accordingly.
+- GitHub Actions workflow: `.github/workflows/build.yml`
+  - Triggers on push/PR to `master`
+  - Builds for linux/darwin/windows × amd64/arm64 (5 targets)
+  - Tests and vet run on linux/amd64; cross-compiled targets build-only
+  - Uploads each binary as a named artifact
+- If changing the build, update the workflow accordingly.
 - Run CI locally with `act` or by pushing a branch.
 
 ## Git Guidelines
