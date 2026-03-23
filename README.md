@@ -56,7 +56,4 @@ make build
 
 ## Dependencies
 
-Dollop is implemented in Go and requires a Go toolchain to build. It has
-been tested on Linux and macOS. The legacy Argtable3 C sources were removed
-when the CLI was migrated to Go; original sources remain in repository
-history if you need them.
+Dollop is implemented in Go and requires a Go toolchain to build. It has been tested on Linux and macOS. The legacy Argtable3 C sources were removed when the CLI was migrated to Go; original sources remain in repository history if you need them.
